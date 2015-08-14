@@ -9,7 +9,7 @@
    },
    "content_scripts": [ {
       "all_frames": false,
-      "js": [ "js/content_script.js", "js/blank.js","js/http_extend.js" ],
+      "js": [ "js/content_script.js", "js/blank.js"],
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_idle"
    }],
