@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Auto Refresh Plus - Options</title>
+<link href="./css/options.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<header>
+<table style="width: 100%" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td><img id="icon" alt="" height="32" src="Icon/icon-32.png" width="32"><h1 id="head1">Auto Refresh <span>Plus</span> <span class="options-text"> # Options</span></h1></td>
+		<td></td>
+	</tr>
+</tbody></table>
+<style>
+fieldset {
+	margin: 50px;
+	right:20px;
+	-webkit-border-radius: 5px;
+}
+</style>
+</header>
+<nav>
+<ul id="tabs">
+	<li><a id="sel1" href="#" class="selected"><span id="settings">Settings</span></a></li>
+</ul>
+</nav>
+<section>
+<div id="tab1" class="tabContent">
+		<div class="group">
+		<table style="width: 100%; height: 40px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+			<td colspan="3"><h2>General Settings</h2></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="default_time">Default Time Interval:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td><input type="number" size="4" value="12" min="0" max="9999" id="default_time"> <label for="default_time">seconds</label></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+
+			<td width="180px">
+			<label for="default_time">Enable Random Interval:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td><input type="checkbox" name="randomTime" id="randomTime"></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td>How to: <a id="incognito" href="chrome://extensions/?id=oilipfekkmncanaajkapbpancpelijih" target="_blank">Allow in incognito</a></td></tr>
+
+		</tbody></table>
+		</div>
+		<div class="group">
+		<table style="width: 100%; height: 35px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr><td colspan="3"><h2>Auto Start</h2></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+
+			<td width="180px">
+			<label for="autostart">Enable This Feature:</label>
+			</td>
+			<td style="text-align:left;"><input type="checkbox" name="autostart" id="autostart"></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="pdurl">Auto Start URL:</label>
+			</td>
+			<td style="text-align:left;"><input type="text" name="asurl" id="asurl" size="80" value="" placeholder="Automatically start refreshing when this URL is opened (e.g. www.google.com)"></td>
+			</tr>
+		</tbody></table>
+		</div>
+		<div class="group">
+		<table style="width: 100%; height: 35px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr><td colspan="3"><h2>Refresh Predefined Page</h2></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="pdcheck">Enable This Feature:</label>
+			</td>
+			<td style="text-align:left;"><input type="checkbox" name="pdcheck" id="pdcheck" ></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="pdurl">Predefined URL:</label>
+			</td>
+			<td style="text-align:left;"><input type="text" name="pdurl" id="pdurl" size="80" value="" placeholder="Refresh this URL instead of the current tab's URL (e.g. www.google.com)"></td>
+			</tr>
+		</tbody></table>
+		</div>
+		<div class="group">
+		<table style="width: 100%; height: 35px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr><td colspan="3"><h2>Start Timer</h2></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="timercheck">Enable This Feature:</label>
+			</td>
+			<td style="text-align:left;"><input type="checkbox" name="timercheck" id="timercheck"></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td>
+			<label>Timer Mode:&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td class="list">
+			<input type="radio" id="timer01" name="timerR" checked><label for="timer01">&nbsp;Countdown Mode (e.g., 2 hours 1 minute 30 seconds)</label><br/>
+			<input type="radio" id="timer02" name="timerR"><label for="timer02">&nbsp;Specific Time Mode (e.g., 2012-01-01 20:10:00)</label>
+			</td>
+			</tr>
+		</tbody></table>
+		</div>
+
+		<div class="group">
+		<table style="width: 100%; height: 35px;" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr><td colspan="3"><h2>Page Monitor</h2></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td width="180px">
+			<label for="pmonitor">Enable This Feature:</label>
+			</td>
+			<td style="text-align:left;"><input type="checkbox" name="pmonitor" id="pmonitor"></td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td>
+			<label>Page Monitor Pattern:&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td class="list">
+			<input type="radio" id="pagemr01" name="pagemr" checked><label for="pagemr01">&nbsp;Popup Notification once it <b>FINDS</b> the target text (or regex)</label><br/>
+			<input type="radio" id="pagemr02" name="pagemr"><label for="pagemr02">&nbsp;Popup Notification once it <b>LOSES</b> the target text (or regex)</label>
+			</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td>
+			<label>Play Sound:&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td class="list">
+			<input type="radio" id="pmsound01" name="pmsound" class="pmsound" checked><label for="pmsound01">&nbsp;Never play sound</label><br/>
+			<input type="radio" id="pmsound02" name="pmsound" class="pmsound"><label for="pmsound02">&nbsp;Play sound candidate 1 (1 second)</label><br/>
+			<input type="radio" id="pmsound03" name="pmsound" class="pmsound"><label for="pmsound03">&nbsp;Play sound candidate 2 (6 seconds)</label><br/>
+			<input type="radio" id="pmsound04" name="pmsound" class="pmsound"><label for="pmsound04">&nbsp;Play sound from URL:</label>&nbsp;<input type="text" name="soundurl" id="soundurl" size="53" value="" placeholder="e.g. www.example.com/sound.mp3"><br/>
+			Volume: <input type="range" id="soundvolume" min="0" max="1" step="0.01"> <button id="test-play">Test Play</button>
+			</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+			<td>
+			<label>Sound Length:&nbsp;&nbsp;&nbsp;</label>
+			</td>
+			<td  class="list">
+			<input type="radio" id="pm_sound_til_click" name="pm_sound_til"  value="pm_sound_til_click"><label for="pm_sound_til_click">&nbsp;Play until I click the notification box</label><br/>
+			<input type="radio" id="pm_sound_til_sound" name="pm_sound_til" value="pm_sound_til_sound"><label for="pm_sound_til_sound">&nbsp;Play only once</label><br/>
+			<input type="radio" id="pm_sound_til_timeout" name="pm_sound_til" value="pm_sound_til_timeout"><label for="pm_sound_til_timeout">&nbsp;Play for </label>  <label><input type="text" id="pm_sound_timeout" value="5" style="width:20px;text-align:center; padding:1px 5px" /> seconds</label>
+			</td>
+			</tr>
+
+		</tbody></table>
+		</div>
+
+		<br/>
+	<div id="savecancelpanel">
+		<button id="save" class="bluebutton">Save</button>
+		<button id="cancel" class="bluebutton">Cancel</button>
+	</div>
+</div>
+
+</section>
+
+<footer>
+<span class="style_bold">Copyright 2015 - Malware free version by Lomme</span>
+</footer>
+
+
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/options.js"></script>
+</body></html>

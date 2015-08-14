@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Auto Refresh Plus</title>
+<style type="text/css" media="all">
+body {
+	font: 0.8em arial, helvetica, sans-serif;
+	color:#222;
+	padding:70px 10px 0 5px;
+	-webkit-user-select:none;
+	user-select:none;
+	cursor:default;
+}
+#header{
+	clear:both;
+	height:30px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #fcfcfc;
+	/*background: rgba(250,250,250,.91);*/
+	padding: 10px 15px;
+	z-index: 100;
+	border-bottom: 1px solid #ddd;
+	-webkit-transition:box-shadow .15s ease-out;
+}
+#header.scrolled {
+	box-shadow: 0px 2px 10px rgba(0,0,0,.15);
+}
+#NameLink { text-decoration:none; font-family:arial,courier,monospace; font-size:16px; font-weight:bold; color:#444;letter-spacing:0px; cursor:pointer;font-size:22px; line-height: 1.5; -webkit-font-smoothing:antialiased; text-shadow: 0 0 2px rgba(68, 68, 68, .1); }
+#NameLink span {font-weight: normal; color:#1975C6; text-shadow: 0 0 2px rgba(25, 117, 198, .3);}
+#header img { margin-right: 7px;position: relative;top: -4px; display:none;}
+
+a#advancedOptions {
+	display: block;
+	position: fixed;
+	right: 15px;
+	top: 10px;
+	z-index: 101;
+	-webkit-transition: -webkit-transform 1s, border .3s, background-color .3s;
+	display: block;
+	width: 15px;
+	height: 15px;
+	border: 1px solid transparent;
+	border-radius: 100px;
+	padding: 7px;
+}
+
+a#advancedOptions:hover {
+  -webkit-transform: rotate(180deg) translateZ(0);
+  border: 1px solid #D0D0D0;
+  background-color: #F1F1F1;
+}
+a#advancedOptions:active {
+  margin-top:1px;
+  background-color: #dfdfdf;
+}
+
+#startbox{margin:15px 0px 10px;}
+#startbox,#statbox,#timebox,#monitorbox{margin-bottom:15px;}
+#startbox { margin-bottom:30px;}
+#startbtn, #timerbtn {
+font-weight:bold;cursor:pointer;color:#333;letter-spacing:1px;
+width: 80px;
+	height: 28px;
+	line-height:26px;
+	font-size: 17px;
+	font-family: arial;
+	background: #eee
+		-webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from(rgba(0,0,0, 0)),
+			to(rgba(0,0,0, .1))
+		);
+	border: 1px solid #bbb;
+	color: #222;
+	text-shadow: 0 1px 1px rgba(255,255,255, 1);
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255, .5),
+		inset 0 1px 0 rgba(255,255,255, .5);
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	outline:0;
+}
+#startbtn { float: left; margin-right: 48px; }
+#startbtn:hover,  #timerbtn:hover {
+	background: #eee -webkit-gradient(
+		linear, left top, left bottom,
+		from(rgba(0,0,0, 0)),
+		to(rgba(0,0,0, .15)) );
+}
+#startbtn:active,  #timerbtn:active {
+	background: #eee -webkit-gradient(
+		linear, left top, left bottom,
+		from(rgba(0,0,0, .20)),
+		to(rgba(0,0,0, .15)) );
+}
+#startbtn.stop, #timerbtn.stop {
+	background: #eee -webkit-gradient(
+		linear, left top, left bottom,
+		from(rgb(240, 80, 80)),
+		to(rgb(160, 20, 20)) );
+	color:#fcfcfc;
+	text-shadow:none;
+}
+#startbtn.stop:hover, #timerbtn.stop:hover {
+	background: #eee -webkit-gradient(
+		linear, left top, left bottom,
+		from(rgb(250, 80, 80)),
+		to(rgb(120, 10, 10)) );
+	color:#fcfcfc;
+	text-shadow:none;
+}
+#startbtn.stop:active, #timerbtn.stop:active {
+	background: #eee -webkit-gradient(
+		linear, left top, left bottom,
+		from(rgb(130, 00, 00)),
+		to(rgb(170, 00, 00)) );
+	color:#fcfcfc;
+	text-shadow:none;
+}
+#timerbtn{font-size:12px;width:110px;height:26px;line-height:24px;}
+#monitorbox{display:none;}
+#randombox{display:none;}
+.pagem{margin-bottom:5px;padding-left:2px;}
+.timetbl{font-size:13px;width:100%;}
+.timetbl tr{height:28px;}
+#pdurlbox{display:none;}
+#timerbox{display:none;margin-top:15px;}
+#timerbox .countbox i{font-style:normal;color:red;margin:0px 5px;}
+#timerbox #countdownMode{display:none;}
+#timerbox #dateMode{display:none;}
+fieldset { border:2px solid #eee; border-radius: 8px; border:0; background: #f9f9f9;padding-top:0; margin-bottom:30px;}
+input { padding:1px 5px; box-sizing:border-box;  }
+input[type=number] { width:45px; padding:2px 0 2px 5px; }
+input[type=number], input[type=text] { border-radius: 3px; border:1px solid #bbb !important;  }
+input[type=text] { padding:3px 5px; }
+.box-title{font-size:18px;color: #4587A7;border-radius:8px; padding:0; position: relative; top:-13px;}
+
+#new-design {
+
+}
+#fb-like {
+	float:right;
+	position: relative;
+	top: -12px;
+}
+
+/*input[type=checkbox], input[type=radio] {
+	vertical-align: -2px;
+}*/
+input, label, label span { vertical-align: middle; }
+label { padding-top:3px; padding-bottom:6px; }
+
+body {
+	background: #F5F5F5;
+	background: #F9F9F9;
+	/*background-image: linear-gradient(to bottom, #f9f9f9, #f5f5f5);
+	background-image: linear-gradient(to bottom, #f7f7f7, #fcfcfc);*/
+	background-attachment: fixed;
+}
+fieldset {
+	background: #FFFFFF;
+	box-shadow: 0 0 4px rgba(0,0,0,.15)
+}
+
+</style>
+</head>
+<body style=" overflow-x: hidden;">
+<div id="header">
+  <input id="startbtn" type="button" value="Start">
+  <img id="icon" alt="" height="32" src="Icon/icon-32.png" width="32">
+	<a href="#" id="NameLink">
+	Auto Refresh <span>Plus</span>
+	</a>
+</div>
+<a href="/options.html" id="advancedOptions" target="_blank">
+		<img src="Icon/setting.png" title="Advanced Features" style="width:15px;height:15px;">
+</a>
+<div id="mainbox">
+	<div id="timebox">
+		<fieldset style="width:400px;">
+			<legend class="box-title">Time Interval</legend>
+			<table class="timetbl">
+			<tbody>
+			<tr>
+			<td width="30%"><label for="r01"><input type="radio" id="r01" name="reloadOption" value="5000" checked><span>&nbsp;5 seconds</span></label></td>
+			<td width="30%"><label for="r02"><input type="radio" id="r02" name="reloadOption" value="10000"><span>10 seconds</span></label></td>
+			<td><label for="r03"><input type="radio" id="r03" name="reloadOption" value="30000"><span>30 seconds</span></label></td></tr>
+			<tr>
+			<td><label for="r04"><input type="radio" id="r04" name="reloadOption" value="60000"><span>&nbsp;1 minute</span></label></td>
+			<td><label for="r05"><input type="radio" id="r05" name="reloadOption" value="300000"><span>&nbsp;5 minutes</span></label></td>
+			<td><label for="r06"><input type="radio" id="r06" name="reloadOption" value="900000"><span>15 minutes</span></label></td></tr>
+			<tr style="height:35px;"><td colspan="3">
+			<label for="r08"><input type="radio" id="r08" name="reloadOption" value="custom">
+			<input type="number" id="tcustom" value="12" size="4" style="width:70px"><span> seconds</span></label>
+			</td></tr>
+			</tbody>
+			</table>
+			<div id="randombox">
+			<div style="border-bottom:1px dashed #cccddd;margin:5px 0px 9px;"></div>
+			<div style="margin-bottom:12px;"><label for="r07"><input type="radio" id="r07" name="reloadOption" value="rand"><span> Random Interval</span></label></div>
+			<label for="tmin" style="margin-left:20px;"><span>&nbsp;Min&nbsp;</span>
+			  <input type="number" id="tmin" value="5" size="2"><span> seconds</span></label>
+			<label for="tmax" style="margin-left:10px;"><span>&nbsp;Max&nbsp;</span>
+			  <input type="number" id="tmax" value="30" size="2"><span> seconds</span></label>
+			</div>
+		</fieldset>
+	</div>
+	<div id="monitorbox">
+		<fieldset style="width:400px;">
+			<legend class="box-title">Page Monitor</legend>
+			<div style="margin:5px 0px;">
+			<div style="margin-bottom:5px;">
+			<div class="pagem" id="pagemr01"><label for="contentid">Popup Notification once it <b>FINDS</b> this text (or regex) on the page</label></div>
+			<div class="pagem" id="pagemr02" style="display:none;"><label for="contentid">Popup Notification once it <b>LOSES</b> this text (or regex) on the page</label></div>
+			<input type="hidden" id="pmpattern" value="A">
+			<input type="text" id="contentid" name="inp01" value="" size="55" placeholder="example: sold|ended|expired"><br/>
+			</div>
+			</div>
+		</fieldset>
+	</div>
+	<div id="pdurlbox">
+		<fieldset style="width:400px;">
+			<legend class="box-title">Predefined Page</legend>
+			<div style="margin:5px 0px;">
+			<div style="margin-bottom:5px;">
+			<div class="pagem"><label for="pdurlinp">Refresh this URL instead of the current tab's URL</label></div>
+			<input type="text" id="pdurlinp" name="pdurlinp"  type="text" value="" size="55" placeholder="example: www.google.com"><br/>
+			</div>
+			</div>
+		</fieldset>
+	</div>
+	<div id="timerbox">
+		<fieldset style="width:400px;">
+			<legend class="box-title">Auto Start Timer</legend>
+			<input type="hidden" id="timermode" value="1">
+			<div id="countdownMode" style="margin-top:10px;">
+			<div style="text-align:center;margin:5px 0px 0px;font-weight:bold;color:#444;">Set the countdown</div>
+			<div style="text-align:center;margin:10px 0px;">
+			<input type="number" id="timerHour" name="hour" size="1" value="0" maxlength="2"><label for="timerHour">&nbsp;hours</label>&nbsp;&nbsp;
+			<input id="timerMin" type="number" name="min" size="1" value="10" maxlength="2"><label for="timerMin">&nbsp;minutes</label>&nbsp;&nbsp;
+			<input id="timerSec" type="number" name="sec" size="1" value="0" maxlength="2"><label for="timerSec">&nbsp;seconds</label><br/>
+			</div>
+			</div>
+			<div id="dateMode" style="margin-top:10px;padding-bottom:10px;">
+			<div style="text-align:center;margin:5px 0px 10px;font-weight:bold;color:#444;">Set the specific time</div>
+			<div style="text-align:left;padding-left:30px;">
+			<label>Date: <input type="text" id="dateInp" size="11" value="" maxlength="10" style="margin-left:4px;">&nbsp;&nbsp;<span style="color:#999;">(yyyy/MM/dd, e.g., 2014/09/21)</span></label><br/>
+			<label>Time: <input type="text" id="timeInp" size="11" value="" maxlength="8">&nbsp;&nbsp;<span style="color:#999;">(HH:mm:ss, e.g., 23:10:01)</span></label>
+			</div>
+			</div>
+			<div style="margin:0 0px 5px;text-align:center;"><input id="timerbtn" type="button" value="Start Timer"></div>
+		</fieldset>
+	</div>
+</div>
+
+<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="js/popup.js"></script>
+</body>
+</html>
