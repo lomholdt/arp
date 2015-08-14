@@ -128,17 +128,7 @@ function read_options(){
 
 
 function show_save_animation() {
-	var style = getId('saved').style;
-	style.zIndex = 100;
-	style.opacity = 1;
-	//getId('tab1').style.opacity = .5;
-	setTimeout(function () {
-		//getId('tab1').style.opacity = 1;
-		style.opacity = 0;
-		setTimeout(function () {
-			style.zIndex = -1;
-		}, 150+10);
-	}, 800);
+  alert("Settings was saved.");
 }
 
 
