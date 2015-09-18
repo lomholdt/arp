@@ -22,7 +22,7 @@
    "manifest_version": 2,
    "name": "Auto Refresh Plus",
    "options_page": "options.html",
-   "permissions": [ "tabs", "http://*/*", "https://*/*", "webNavigation","storage"],
+   "permissions": [ "tabs", "http://*/*", "https://*/*", "webNavigation","storage", "notifications"],
    "version": "6.1.5",
    "homepage_url":"http://google.com/",
    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",

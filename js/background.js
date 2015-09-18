@@ -337,21 +337,7 @@ function show_notification(pmpattern, check_content, onclick) {
 	  buttons: [{title: "Show tab"}, {title: "Dismiss"}],
 	  isClickable: true
 	}
-
-
-	/*
-	// Chrome native notification
-	// we use W3C notifications for now, because they stay visible longer
-	// but uncommenting this would work too, all the code is ready
-	chrome.notifications.create("", options, function (notificationId) {
-		onClickForNotifications[notificationId] = function() {
-			onclick && onclick();
-			pause_sound();
-		};
-		onCloseForNotifications[notificationId] = pause_sound;
-	});
-	*/
-
+	
 	var notification = new Notification(
 		options.title,
 		{
