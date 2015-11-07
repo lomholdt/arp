@@ -22,12 +22,15 @@ $(document).ready(function(){
   });
   $("#hours").change(function(){
   	updateCustomValue();
+  	$("#custom").prop("checked", true);
   });  
   $("#minutes").change(function(){
   	updateCustomValue();
+  	$("#custom").prop("checked", true);
   });  
   $("#seconds").change(function(){
   	updateCustomValue();
+  	$("#custom").prop("checked", true);
   });
 
   // $("#hours").val("7200000");

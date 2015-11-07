@@ -23,7 +23,7 @@
    "name": "Auto Refresh Plus",
    "options_page": "options.html",
    "permissions": [ "tabs", "http://*/*", "https://*/*", "webNavigation","storage", "notifications"],
-   "version": "6.1.8",
+   "version": "6.2.0",
    "homepage_url":"https://github.com/lomholdt/arp",
    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
    "web_accessible_resources": [ "blank.html" ]
