@@ -16,9 +16,9 @@ $(document).ready(function(){
   $("#tmin").focus(function(){ getId('r07').checked = true; });
   $("#tmax").focus(function(){ getId('r07').checked = true; });
 
+  // Setup custom dropdown time
   $("#custom").click(function(){
   	updateCustomValue();
-  	console.log("clicked custom");
   });
   $("#hours").change(function(){
   	updateCustomValue();
@@ -29,6 +29,8 @@ $(document).ready(function(){
   $("#seconds").change(function(){
   	updateCustomValue();
   });
+
+  // $("#hours").val("7200000");
 
   $("#timerbtn").click(startTimer);
 });
@@ -64,7 +66,14 @@ function get_interval( )
 			}
 			time_result[0] = interval_time;
 			time_result[1] = 'custom';
-		} else {
+		} else if(radio_arr[i].id == 'custom'){ // the new dropdown feature
+			console.log("Yahooo!");
+			interval_time = radio_arr[i].value;
+			time_result[0] = interval_time;
+			time_result[1] = 'customDropdown';
+		} 
+
+		else {
 			interval_time = radio_arr[i].value;
 			time_result[0] = interval_time;
 			time_result[1] = 'stand';
@@ -89,10 +98,13 @@ function set_interval(time_interval, time_type) {
 	getId("tmax").value = min_max_arr[1];
 	return;
   }
+  else if (time_type == 'customDropdown'){
+  	getId('custom').checked = true;
+  	return;
+  }
 
   var radio_arr = document.getElementsByName("reloadOption");
-  var total = radio_arr.length;
-  for(i=0;i<total;i++) {
+  for(i = 0 ; i < radio_arr.length; i++) {
     if(radio_arr[i].value == time_interval) {
         radio_arr[i].checked = true;
         return;
@@ -106,13 +118,13 @@ function startRefresh() {
   	getId("startbtn").classList.add("stop");
     getId("startbtn").value = "Stop";
 
-		getId("timerbtn").value = "Start Timer";
-		getId("timerbtn").classList.remove("stop");
+	getId("timerbtn").value = "Start Timer";
+	getId("timerbtn").classList.remove("stop");
 
-		var myInterval = get_interval();
-		var views = chrome.extension.getViews();
-		var checkme = getId("contentid").value;
-		var preurl = getId("pdurlinp").value;
+	var myInterval = get_interval();
+	var views = chrome.extension.getViews();
+	var checkme = getId("contentid").value;
+	var preurl = getId("pdurlinp").value;
 
     for (var i in views) {
 			if(checkme) {
@@ -275,6 +287,16 @@ function restoreOptions() {
 			$('#timeInp').val(dTime);
 		}
 	}
+	// Set times if already defined
+	if(localStorage['customHour']){
+		$("#hours").val(localStorage.customHour);
+	}
+	if(localStorage['customMinutetue']){
+		$("#minutes").val(localStorage.customMinute);
+	}
+	if(localStorage['customSecond']){
+		$("#seconds").val(localStorage.customSecond);
+	}
 	var port = chrome.extension.connect({name: "getOptions"});
 	port.onMessage.addListener(recvData);
 	port.postMessage({msg:'getAllOptions'});
@@ -364,8 +386,10 @@ function updateCustomValue(){
 	var hours = $("#hours");
 	var minutes = $("#minutes");
 	var seconds = $("#seconds");
+	localStorage.customHour = hours.val();
+	localStorage.customMinute = minutes.val();
+	localStorage.customSecond = seconds.val();
 	var sum = parseInt(hours.val()) + parseInt(minutes.val()) + parseInt(seconds.val());
-
 	$("#custom").val(sum);
 }
 

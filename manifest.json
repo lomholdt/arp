@@ -13,7 +13,7 @@
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_idle"
    }],
-   "description": "Refresh page automatically, plus page monitor feature.",
+   "description": "Refresh a page automatically and get notified when keywords change.",
    "icons": {
       "128": "Icon/icon-64.png",
       "48": "Icon/icon-48.png"
@@ -23,7 +23,7 @@
    "name": "Auto Refresh Plus",
    "options_page": "options.html",
    "permissions": [ "tabs", "http://*/*", "https://*/*", "webNavigation","storage", "notifications"],
-   "version": "6.1.7",
+   "version": "6.1.8",
    "homepage_url":"https://github.com/lomholdt/arp",
    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
    "web_accessible_resources": [ "blank.html" ]
