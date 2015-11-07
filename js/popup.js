@@ -3,9 +3,9 @@ function getId(id) { return document.getElementById(id); }
 
 $(document).ready(function(){
 
-	// if we showed new options right away
-	// there would be no scrollbars (wtf)
   setTimeout(restoreOptions, 1);
+
+  populateCustom(); // Populate the custom time dropdown with options
   
   $("#startbtn").click(startRefresh);
 
@@ -15,6 +15,20 @@ $(document).ready(function(){
   $("#r07").click(function(){ getId('tmin').focus(); });
   $("#tmin").focus(function(){ getId('r07').checked = true; });
   $("#tmax").focus(function(){ getId('r07').checked = true; });
+
+  $("#custom").click(function(){
+  	updateCustomValue();
+  	console.log("clicked custom");
+  });
+  $("#hours").change(function(){
+  	updateCustomValue();
+  });  
+  $("#minutes").change(function(){
+  	updateCustomValue();
+  });  
+  $("#seconds").change(function(){
+  	updateCustomValue();
+  });
 
   $("#timerbtn").click(startTimer);
 });
@@ -325,6 +339,44 @@ function recvData(data){
 		}
 	}
 }
+
+function populateCustom(){
+	var hours = $("#hours");
+	var minutes = $("#minutes");
+	var seconds = $("#seconds");
+
+	for (var i = 0; i <= 12 ; i++) {
+		var hourValue = i * 60 * 60 * 1000;
+		var option = "<option value="+ hourValue +">"+ i +"</option>";
+		hours.append(option);
+	};	
+	for (var j = 0; j <= 60 ; j++) {
+		var minuteValue = j * 60 * 1000;
+		var secondValue = j * 1000;
+		var minuteOption = "<option value="+ minuteValue +">"+ j +"</option>";
+		var secondOption = "<option value="+ secondValue +">"+ j +"</option>";
+		minutes.append(minuteOption);
+		seconds.append(secondOption);
+	};
+}
+
+function updateCustomValue(){
+	var hours = $("#hours");
+	var minutes = $("#minutes");
+	var seconds = $("#seconds");
+	var sum = parseInt(hours.val()) + parseInt(minutes.val()) + parseInt(seconds.val());
+
+	$("#custom").val(sum);
+}
+
+
+
+
+
+
+
+
+
 
 var scrollRoot = document.body;
 var header = getId('header');

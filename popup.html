@@ -187,20 +187,50 @@ fieldset {
 		<fieldset style="width:400px;">
 			<legend class="box-title">Time Interval</legend>
 			<table class="timetbl">
-			<tbody>
-			<tr>
-			<td width="30%"><label for="r01"><input type="radio" id="r01" name="reloadOption" value="5000" checked><span>&nbsp;5 seconds</span></label></td>
-			<td width="30%"><label for="r02"><input type="radio" id="r02" name="reloadOption" value="10000"><span>10 seconds</span></label></td>
-			<td><label for="r03"><input type="radio" id="r03" name="reloadOption" value="30000"><span>30 seconds</span></label></td></tr>
-			<tr>
-			<td><label for="r04"><input type="radio" id="r04" name="reloadOption" value="60000"><span>&nbsp;1 minute</span></label></td>
-			<td><label for="r05"><input type="radio" id="r05" name="reloadOption" value="300000"><span>&nbsp;5 minutes</span></label></td>
-			<td><label for="r06"><input type="radio" id="r06" name="reloadOption" value="900000"><span>15 minutes</span></label></td></tr>
-			<tr style="height:35px;"><td colspan="3">
-			<label for="r08"><input type="radio" id="r08" name="reloadOption" value="custom">
-			<input type="number" id="tcustom" value="120" size="4" style="width:70px"><span> seconds</span></label>
-			</td></tr>
-			</tbody>
+				<tbody>
+					<tr>
+						<td width="30%"><label for="r01"><input type="radio" id="r01" name="reloadOption" value="5000" checked><span>&nbsp;5 seconds</span></label></td>
+						<td width="30%"><label for="r02"><input type="radio" id="r02" name="reloadOption" value="10000"><span>10 seconds</span></label></td>
+						<td><label for="r03"><input type="radio" id="r03" name="reloadOption" value="30000"><span>30 seconds</span></label></td>
+					</tr>
+					<tr>
+						<td><label for="r04"><input type="radio" id="r04" name="reloadOption" value="60000"><span>&nbsp;1 minute</span></label></td>
+						<td><label for="r05"><input type="radio" id="r05" name="reloadOption" value="300000"><span>&nbsp;5 minutes</span></label></td>
+						<td><label for="r06"><input type="radio" id="r06" name="reloadOption" value="900000"><span>15 minutes</span></label></td>
+					</tr>
+					<tr>
+						<td>
+							<label for="custom"><input type="radio" id="custom" name="reloadOption" value="120"><span>Custom</span></label>
+						</td>
+						<td>
+							<label for="hours"><span>H</span>
+								<select name="hours" id="hours">
+									<!-- POPULATE HOURS -->
+								</select>
+							</label>
+						</td>
+						<td>
+							<label for="minutes"><span>M</span>
+								<select name="minutes" id="minutes">
+									<!-- POPULATE MINUTES -->
+								</select>
+							</label>
+						</td>
+						<td>
+							<label for="seconds"><span>S</span>
+								<select name="seconds" id="seconds">
+									<!-- POPULATE SECONDS -->
+								</select>
+							</label>
+						</td>
+					</tr>
+					<tr style="height:35px;">
+						<td colspan="3">
+						<label for="r08"><input type="radio" id="r08" name="reloadOption" value="custom">
+						<input type="number" id="tcustom" value="120" size="4" style="width:70px"><span> seconds</span></label>
+						</td>
+					</tr>
+				</tbody>
 			</table>
 			<div id="randombox">
 			<div style="border-bottom:1px dashed #cccddd;margin:5px 0px 9px;"></div>
