@@ -72,7 +72,6 @@ function get_interval( )
 			time_result[0] = interval_time;
 			time_result[1] = 'customDropdown';
 		} 
-
 		else {
 			interval_time = radio_arr[i].value;
 			time_result[0] = interval_time;
@@ -291,7 +290,7 @@ function restoreOptions() {
 	if(localStorage['customHour']){
 		$("#hours").val(localStorage.customHour);
 	}
-	if(localStorage['customMinutetue']){
+	if(localStorage['customMinute']){
 		$("#minutes").val(localStorage.customMinute);
 	}
 	if(localStorage['customSecond']){
@@ -367,7 +366,7 @@ function populateCustom(){
 	var minutes = $("#minutes");
 	var seconds = $("#seconds");
 
-	for (var i = 0; i <= 12 ; i++) {
+	for (var i = 0; i <= 24 ; i++) {
 		var hourValue = i * 60 * 60 * 1000;
 		var option = "<option value="+ hourValue +">"+ i +"</option>";
 		hours.append(option);

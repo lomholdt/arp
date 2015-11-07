@@ -185,30 +185,33 @@ fieldset {
 						<td><label for="r06"><input type="radio" id="r06" name="reloadOption" value="900000"><span>15 minutes</span></label></td>
 					</tr>
 					<tr>
-						<td>
-							<label for="custom"><input type="radio" id="custom" name="reloadOption" value="10000"><span>Custom</span></label>
-						</td>
-						<td>
-							<label for="hours"><span>H</span>
-								<select name="hours" id="hours">
-									<!-- POPULATE HOURS -->
-								</select>
-							</label>
-						</td>
-						<td>
-							<label for="minutes"><span>M</span>
-								<select name="minutes" id="minutes">
-									<!-- POPULATE MINUTES -->
-								</select>
-							</label>
-						</td>
-						<td>
-							<label for="seconds"><span>S</span>
-								<select name="seconds" id="seconds">
-									<!-- POPULATE SECONDS -->
-								</select>
-							</label>
-						</td>
+						<div style="background-color: grey">
+							<td>
+								<input type="radio" id="custom" name="reloadOption" value="10000">
+								<label for="minutes"><span>H</span>
+									<select name="hours" id="hours">
+										<option selected disabled>Hours</option>
+										<!-- POPULATE HOURS -->
+									</select>
+								</label>
+							</td>
+							<td>
+								<label for="minutes"><span>M</span>
+									<select name="minutes" id="minutes">
+										<option selected disabled>Minutes</option>
+										<!-- POPULATE MINUTES -->
+									</select>
+								</label>
+							</td>
+							<td>
+								<label for="seconds"><span>S</span>
+									<select name="seconds" id="seconds">
+										<option selected disabled>Seconds</option>
+										<!-- POPULATE SECONDS -->
+									</select>
+								</label>
+							</td>
+						</div>
 					</tr>
 					<tr style="height:35px;">
 						<td colspan="3">
@@ -218,6 +221,7 @@ fieldset {
 					</tr>
 				</tbody>
 			</table>
+			<div>
 			<div id="randombox">
 			<div style="border-bottom:1px dashed #cccddd;margin:5px 0px 9px;"></div>
 			<div style="margin-bottom:12px;"><label for="r07"><input type="radio" id="r07" name="reloadOption" value="rand"><span> Random Interval</span></label></div>
