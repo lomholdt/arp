@@ -131,13 +131,22 @@ fieldset {
 			</tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
 			<tr>
-			<td>
-			<label>Page Monitor Pattern:&nbsp;&nbsp;&nbsp;</label>
-			</td>
-			<td class="list">
-			<input type="radio" id="pagemr01" name="pagemr" checked><label for="pagemr01">&nbsp;Popup Notification once it <b>FINDS</b> the target text (or regex)</label><br/>
-			<input type="radio" id="pagemr02" name="pagemr"><label for="pagemr02">&nbsp;Popup Notification once it <b>LOSES</b> the target text (or regex)</label>
-			</td>
+				<td>
+					<label>Page Monitor Pattern:&nbsp;&nbsp;&nbsp;</label>
+				</td>
+				<td class="list">
+					<input type="radio" id="pagemr01" name="pagemr" checked><label for="pagemr01">&nbsp;Popup Notification once it <b>FINDS</b> the target text (or regex)</label><br/>
+					<input type="radio" id="pagemr02" name="pagemr"><label for="pagemr02">&nbsp;Popup Notification once it <b>LOSES</b> the target text (or regex)</label>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr>
+				<td>
+					<span>Default Target Text:</span>
+				</td>
+				<td>
+					<input type="text" id="defaultPattern" placeholder="Deafault target text (or regex)">
+				</td>
 			</tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
 			<tr>
@@ -181,7 +190,7 @@ fieldset {
 </section>
 
 <footer>
-<span class="style_bold">Copyright 2015 - Malware free version by <a href="https://github.com/lomholdt/arp">Lomme</a></span>
+<span class="style_bold">Copyright 2015 - Malware free version by <a href="https://github.com/lomholdt/arp">Jonas Lomholdt</a></span>
 </footer>
 
 

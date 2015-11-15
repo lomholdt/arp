@@ -25,6 +25,7 @@ function save_options(){
 	localStorage['pdcheck'] = getId('pdcheck').checked
 	localStorage['pdurl'] = getId('pdurl').value;
 	localStorage['timercheck'] = getId('timercheck').checked;
+	localStorage.default_pattern = $("#defaultPattern").val();
 
 
 	if(getId('timer01').checked) {
@@ -100,6 +101,11 @@ function read_options(){
 		getId('pagemr01').checked = true;
 	}
 
+	if(localStorage.default_pattern){
+		// set deafult pattern 
+		$("#defaultPattern").val(localStorage.default_pattern);
+	}
+
  	// sound
 	if(localStorage['sound'] && localStorage['sound'] == '2') {
 		getId('pmsound02').checked = true;
@@ -123,7 +129,7 @@ function read_options(){
 	getId('pm_sound_til_' + localStorage['pm_sound_til']).checked = true;
 	getId('pm_sound_timeout').value = localStorage['pm_sound_timeout'] || 5;
 
-	document.getElementById("dontsupport").checked = (localStorage.support == "false");///
+	document.getElementById("dontsupport").checked = (localStorage.support == "false");
 }
 
 

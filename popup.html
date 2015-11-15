@@ -155,6 +155,10 @@ fieldset {
 	box-shadow: 0 0 4px rgba(0,0,0,.15)
 }
 
+.hideButton{
+	visibility: hidden;
+}
+
 </style>
 </head>
 <body style=" overflow-x: hidden;">
@@ -240,7 +244,7 @@ fieldset {
 			<div class="pagem" id="pagemr01"><label for="contentid">Popup Notification once it <b>FINDS</b> this text (or regex) on the page</label></div>
 			<div class="pagem" id="pagemr02" style="display:none;"><label for="contentid">Popup Notification once it <b>LOSES</b> this text (or regex) on the page</label></div>
 			<input type="hidden" id="pmpattern" value="A">
-			<input type="text" id="contentid" name="inp01" value="" size="55" placeholder="example: sold|ended|expired"><br/>
+			<input type="text" id="contentid" name="inp01" value="" size="45" placeholder="example: sold|ended|expired"><span>&nbsp;</span><button id="default-value-button">Use Default</button><br/>
 			</div>
 			</div>
 		</fieldset>

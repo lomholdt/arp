@@ -67,20 +67,14 @@ function updateTab(tabId, theurl){
 
 function updateTabWithBlankSandwich(tabId, url) {
 	chrome.tabs.update(tabId, {url: blank_page});
-	//var details = { code: "window.location.replace('" + blank_page + "');" };
-	//chrome.tabs.executeScript(tabId, details);
-	//var message = { name: 'location_replace', data: blank_page };
-	//chrome.tabs.sendMessage(tabId, message);
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 	  if (	info.url == blank_page &&
 	  			pending_reloads[tabId] &&
-	  			info.status == 'loading') {
-	    //updateTab(tabId, pending_reloads[tabId]);
-	  	//var message = { name: 'location_replace', data: pending_reloads[tabId] };
-	  	//chrome.tabs.sendMessage(tabId, message);
-	  	delete pending_reloads[tabId];
+	  			info.status == 'loading') 
+	  {
+		delete pending_reloads[tabId];
 	  }
 });
 

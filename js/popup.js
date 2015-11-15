@@ -4,11 +4,9 @@ function getId(id) { return document.getElementById(id); }
 $(document).ready(function(){
 
   setTimeout(restoreOptions, 1);
-
   populateCustom(); // Populate the custom time dropdown with options
-  
   $("#startbtn").click(startRefresh);
-
+  $("#default-value-button").click(function(){ $("#contentid").val(localStorage.default_pattern) });
   $("#r08").click(function(){ getId('tcustom').focus(); });
   $("#tcustom").focus(function(){ getId('r08').checked = true; });
 
@@ -32,8 +30,6 @@ $(document).ready(function(){
   	updateCustomValue();
   	$("#custom").prop("checked", true);
   });
-
-  // $("#hours").val("7200000");
 
   $("#timerbtn").click(startTimer);
 });
@@ -70,7 +66,6 @@ function get_interval( )
 			time_result[0] = interval_time;
 			time_result[1] = 'custom';
 		} else if(radio_arr[i].id == 'custom'){ // the new dropdown feature
-			console.log("Yahooo!");
 			interval_time = radio_arr[i].value;
 			time_result[0] = interval_time;
 			time_result[1] = 'customDropdown';
@@ -254,6 +249,9 @@ function restoreOptions() {
 	}
 	if(localStorage['pmonitor'] && localStorage['pmonitor'] == 'true'){
 		$('#monitorbox').show();
+		if(!localStorage.default_pattern){ // only show button if default text is set
+			$("#default-value-button").toggleClass("hideButton");
+		}
 		if(localStorage['pmpattern'] && localStorage['pmpattern'] == 'B') {
 			$('#pagemr02').show();
 			$('#pagemr01').hide();
@@ -299,6 +297,7 @@ function restoreOptions() {
 	if(localStorage['customSecond']){
 		$("#seconds").val(localStorage.customSecond);
 	}
+
 	var port = chrome.extension.connect({name: "getOptions"});
 	port.onMessage.addListener(recvData);
 	port.postMessage({msg:'getAllOptions'});
@@ -323,11 +322,10 @@ function recvData(data){
 
 	set_interval(data.time_interval, data.time_type);
 	if(data.checkme) {
-		getId('contentid').value = data.checkme;
+			getId('contentid').value = data.checkme;
 	}
 
 	if(data.wait_time) {
-		//console.log(data.wait_time.toString());
 		if(data.wait_time.toString().search(" ") == -1) {
 			var waitTime = data.wait_time / 1000;
 			var tHour = Math.floor(waitTime / 3600);
@@ -394,14 +392,6 @@ function updateCustomValue(){
 	var sum = parseInt(hours.val()) + parseInt(minutes.val()) + parseInt(seconds.val());
 	$("#custom").val(sum);
 }
-
-
-
-
-
-
-
-
 
 
 var scrollRoot = document.body;

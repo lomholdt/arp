@@ -378,6 +378,6 @@ nav {
 
 td.list { line-height: 1.25; }
 
-/*input[type="checkbox"], input[type="radio"] {
-	vertical-align: -2px;
-}*/
+#defaultPattern{
+    width: 200px;
+}
