@@ -133,7 +133,6 @@ function show_save_animation() {
   alert('Settings was saved.');
 }
 
-
 var sound = new Audio();
 var is_sound_playing = false;
 var volume_change_timer;
