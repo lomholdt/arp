@@ -324,7 +324,7 @@ function recvData(data){
 			getId('timerHour').value = tHour;
 			getId('timerMin').value = tMin
 			getId('timerSec').value = tSec
-			geteId('timermode').value = '1'
+			getId('timermode').value = '1'
 		} else {
 			var nowTime = new Date(data.wait_time);
 			var theMonth = nowTime.getMonth() + 1;
