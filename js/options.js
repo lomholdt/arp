@@ -1,16 +1,12 @@
 
 var default_options = {}
 
-$(document).ready(function(){
-  read_options();
-  //$("#sel1").click(function(){ tab_click(1); });
-  $("#save").click(save_options);
-  $("#cancel").click(function(){ window.close(); });
-  init();
-});
-
-
-function getId(id) { return document.getElementById(id); }
+ready(() => {
+	read_options()
+	getId('save').onclick = save_options
+	getId('cancel').onclick = () => window.close()
+	init()
+})
 
 // Option to save current value to localstorage
 function save_options(){
@@ -25,7 +21,7 @@ function save_options(){
 	localStorage['pdcheck'] = getId('pdcheck').checked
 	localStorage['pdurl'] = getId('pdurl').value;
 	localStorage['timercheck'] = getId('timercheck').checked;
-	localStorage.default_pattern = $("#defaultPattern").val();
+	localStorage.default_pattern = getId('defaultPattern').value;
 
 
 	if(getId('timer01').checked) {
@@ -67,7 +63,7 @@ function save_options(){
 	localStorage['pm_sound_timeout']  = getId('pm_sound_timeout').value;
 
 
-  localStorage.support = !(document.getElementById("dontsupport").checked);///
+  localStorage.support = !(getId('dontsupport').checked);
 
 	show_save_animation();
 }
@@ -103,7 +99,7 @@ function read_options(){
 
 	if(localStorage.default_pattern){
 		// set deafult pattern 
-		$("#defaultPattern").val(localStorage.default_pattern);
+		getId('defaultPattern').value = localStorage.default_pattern;
 	}
 
  	// sound
@@ -129,12 +125,12 @@ function read_options(){
 	getId('pm_sound_til_' + localStorage['pm_sound_til']).checked = true;
 	getId('pm_sound_timeout').value = localStorage['pm_sound_timeout'] || 5;
 
-	document.getElementById("dontsupport").checked = (localStorage.support == "false");
+	getId('dontsupport').checked = (localStorage.support == 'false');
 }
 
 
 function show_save_animation() {
-  alert("Settings was saved.");
+  alert('Settings was saved.');
 }
 
 
@@ -189,7 +185,6 @@ function init() {
 			play_sound();
 		clearTimeout(volume_change_timer);
 		volume_change_timer = setTimeout(function () {
-			//sound.pause();
 			pause_sound_with_fadeout(sound);
 		}, 2000)
 	}
