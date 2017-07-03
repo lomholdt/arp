@@ -1,43 +1,33 @@
-
-function getId(id) { return document.getElementById(id); }
-
-$(document).ready(function(){
-
+ready(() => {
   setTimeout(restoreOptions, 1);
   populateCustom(); // Populate the custom time dropdown with options
-  $("#startbtn").click(startRefresh);
-  $("#default-value-button").click(function(){ $("#contentid").val(localStorage.default_pattern) });
-  $("#r08").click(function(){ getId('tcustom').focus(); });
-  $("#tcustom").focus(function(){ getId('r08').checked = true; });
+	getId('startbtn').onclick = startRefresh
+	getId('default-value-button').onclick = () =>
+		getId('contentid').value = localStorage.default_pattern
+	getId('r08').onclick = () => getId('tcustom').focus()
+	getId('tcustom').onfocus = () => getId('r08').checked = true
+	getId('r07').onclick = () => getId('tmin').focus()
+	getId('tmin').onfocus = () => getId('r07').checked = true
+	getId('tmax').onfocus = () => getId('r07').checked = true
 
-  $("#r07").click(function(){ getId('tmin').focus(); });
-  $("#tmin").focus(function(){ getId('r07').checked = true; });
-  $("#tmax").focus(function(){ getId('r07').checked = true; });
+	getId('custom').onclick = updateCustomValue
 
-  // Setup custom dropdown time
-  $("#custom").click(function(){
-  	updateCustomValue();
-  });
-  $("#hours").change(function(){
-  	updateCustomValue();
-  	$("#custom").prop("checked", true);
-  });  
-  $("#minutes").change(function(){
-  	updateCustomValue();
-  	$("#custom").prop("checked", true);
-  });  
-  $("#seconds").change(function(){
-  	updateCustomValue();
-  	$("#custom").prop("checked", true);
-  });
+	const update = () => {
+		updateCustomValue()
+		getId('custom').checked = true
+	}
 
-  $("#timerbtn").click(startTimer);
-});
+	getId('hours').onchange = update
+	getId('minutes').onchange = update
+	getId('seconds').onchange = update
+
+	getId('timebtn').onclick = startTimer
+})
 
 
 function get_interval( )
 {
-  var time_result = new Array();
+  var time_result = []
   var interval_time = 5000;
   var radio_arr = document.getElementsByName("reloadOption");
   var total = radio_arr.length;
@@ -45,9 +35,8 @@ function get_interval( )
   for(i=0;i<total;i++) {
 	if(radio_arr[i].checked) {
 		if(radio_arr[i].value == 'rand') {
-			var tmin = $("#tmin").val() - 0;
-			var tmax = $("#tmax").val() - 0;
-			//tmin should < tmax
+			var tmin = getId('tmin').value - 0;
+			var tmax = getId('tmax').value - 0;
 			if(tmin > tmax) {
 				interval_time = tmax+'-'+tmin;
 			} else {
@@ -56,10 +45,10 @@ function get_interval( )
 			time_result[0] = interval_time;
 			time_result[1] = 'rand';
 		}else if(radio_arr[i].value == 'custom') {
-			var tcustom = $("#tcustom").val() - 0;
+			var tcustom = getId('tcustom').value - 0;
 			if(tcustom < 0) {
 				interval_time = 1000;
-				$("#tcustom").val("1");
+				getId('tcustom').value = '1';
 			} else {
 				interval_time = Math.round(tcustom * 1000);
 			}
@@ -242,60 +231,61 @@ function startTimer() {
 
 function restoreOptions() {
 	if(localStorage['default_time']) {
-		set_interval(localStorage['default_time']*1000, "custom");
+		set_interval(localStorage['default_time'] * 1000, "custom");
 	}
 	if(localStorage['random_time'] == 'true') {
-		$('#randombox').show();
+		show(getId('randombox'))
 	}
 	if(localStorage['pmonitor'] && localStorage['pmonitor'] == 'true'){
-		$('#monitorbox').show();
+		show(getId('monitorbox'))
 		if(!localStorage.default_pattern){ // only show button if default text is set
-			$("#default-value-button").toggleClass("hideButton");
+			getId('default-value-button').classList.toggle('hideButton')
 		}
 		if(localStorage['pmpattern'] && localStorage['pmpattern'] == 'B') {
-			$('#pagemr02').show();
-			$('#pagemr01').hide();
-			$('#pmpattern').val("B");
+			show(getId('pagemr02'))
+			hide(getId('pagemr01'))
+			getId('pmpattern').value = 'B'
 		} else {
-			$('#pagemr02').hide();
-			$('#pagemr01').show();
-			$('#pmpattern').val("A");
+			hide(getId('pagemr02'))
+			show(getId('pagemr01'))
+			getId('pmpattern').value = 'A'
 		}
 	}
 	if(localStorage['pdcheck'] && localStorage['pdcheck'] == 'true'){
-		$('#pdurlbox').show();
+		show(getId('pdurlbox'))
 		var pdurl = localStorage['pdurl'];
-		$('#pdurlinp').val(pdurl);
+		getId('pdurlinp').value = pdurl
 	}
 	if(localStorage['timercheck'] && localStorage['timercheck'] == 'true') {
-		$('#timerbox').show();
+		show(getId('timerbox'))
 		if(localStorage['timermode'] == "1") {
-			$('#countdownMode').show();
-			$('#timermode').val("1");
+			show(getId('countdownMode'))
+			getId('timermode').value = '1'
+
 		} else {
-			$('#timermode').val("2");
-			$('#dateMode').show();
+			getId('timermode').value = '2'
+			show(getId('dateMode'))
 			//10 minutes later
 			var nowTime = new Date((new Date()).getTime() + 600000);
 			var theMonth = nowTime.getMonth() + 1;
 			if(theMonth < 10) {
-				theMonth = "0"+theMonth;
+				theMonth = "0" + theMonth;
 			}
 			var dDate = nowTime.getFullYear() + "/" + theMonth + "/" + nowTime.getDate();
 			var dTime = nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
-			$('#dateInp').val(dDate);
-			$('#timeInp').val(dTime);
+			getId('dateInp').value = dDate
+			getId('timeInp').value = dTime
 		}
 	}
 	// Set times if already defined
 	if(localStorage['customHour']){
-		$("#hours").val(localStorage.customHour);
+		getId('hours').value = localStorage.customHour
 	}
 	if(localStorage['customMinute']){
-		$("#minutes").val(localStorage.customMinute);
+		getId('minutes').value = localStorage.customMinute
 	}
 	if(localStorage['customSecond']){
-		$("#seconds").val(localStorage.customSecond);
+		getId('seconds').value = localStorage.customSecond
 	}
 
 	var port = chrome.extension.connect({name: "getOptions"});
@@ -332,9 +322,9 @@ function recvData(data){
 			var tMin = Math.floor((waitTime - tHour * 3600) / 60);
 			var tSec = Math.floor(waitTime - (tHour * 3600) - (tMin * 60));
 			getId('timerHour').value = tHour;
-			getId('timerMin').value = tMin;
-			getId('timerSec').value = tSec;
-			$('#timermode').val("1");
+			getId('timerMin').value = tMin
+			getId('timerSec').value = tSec
+			getId('timermode').value = '1'
 		} else {
 			var nowTime = new Date(data.wait_time);
 			var theMonth = nowTime.getMonth() + 1;
@@ -355,42 +345,42 @@ function recvData(data){
 			}
 			var dDate = nowTime.getFullYear() + "/" + theMonth + "/" + nowTime.getDate();
 			var dTime = nowTime.getHours() + ":" + theMin + ":" + theSec;
-			$('#dateInp').val(dDate);
-			$('#timeInp').val(dTime);
-			$('#timermode').val("2");
+			getid('dateInp').value = dDate
+			getId('timeInp').value = dTime
+			getId('timermode').value = '2'
 		}
 	}
 }
 
 function populateCustom(){
-	var hours = $("#hours");
-	var minutes = $("#minutes");
-	var seconds = $("#seconds");
+	var hours = getId('hours')
+	var minutes = getId('minutes')
+	var seconds = getId('seconds')
 
 	for (var i = 0; i <= 24 ; i++) {
-		var hourValue = i * 60 * 60 * 1000;
-		var option = "<option value="+ hourValue +">"+ i +"</option>";
-		hours.append(option);
-	};	
+		var hourValue = i * 60 * 60 * 1000
+		var option = "<option value="+ hourValue +">"+ i +"</option>"
+		hours.innerHTML += option
+	}
 	for (var j = 0; j <= 60 ; j++) {
-		var minuteValue = j * 60 * 1000;
-		var secondValue = j * 1000;
-		var minuteOption = "<option value="+ minuteValue +">"+ j +"</option>";
-		var secondOption = "<option value="+ secondValue +">"+ j +"</option>";
-		minutes.append(minuteOption);
-		seconds.append(secondOption);
+		var minuteValue = j * 60 * 1000
+		var secondValue = j * 1000
+		var minuteOption = "<option value="+ minuteValue +">"+ j +"</option>"
+		var secondOption = "<option value="+ secondValue +">"+ j +"</option>"
+		minutes.innerHTML += minuteOption
+		seconds.innerHTML += secondOption
 	};
 }
 
 function updateCustomValue(){
-	var hours = $("#hours");
-	var minutes = $("#minutes");
-	var seconds = $("#seconds");
-	localStorage.customHour = hours.val();
-	localStorage.customMinute = minutes.val();
-	localStorage.customSecond = seconds.val();
-	var sum = parseInt(hours.val()) + parseInt(minutes.val()) + parseInt(seconds.val());
-	$("#custom").val(sum);
+	var hours = getId('hours')
+	var minutes = getId('minutes')
+	var seconds = getId('seconds')
+	localStorage.customHour = hours.value
+	localStorage.customMinute = minutes.value
+	localStorage.customSecond = seconds.value
+	var sum = parseInt(hours.value) + parseInt(minutes.value) + parseInt(seconds.value)
+	getId('custom').value = sum
 }
 
 
