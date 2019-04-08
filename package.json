@@ -1,0 +1,22 @@
+{
+  "name": "arp",
+  "version": "1.0.0",
+  "description": "Auto Refresh Plus with all tracking and malware removed!",
+  "main": "index.js",
+  "scripts": {
+    "release": "webstore upload --source=./ --auto-publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lomholdt/arp.git"
+  },
+  "author": "Jonas Lomholdt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lomholdt/arp/issues"
+  },
+  "homepage": "https://github.com/lomholdt/arp#readme",
+  "devDependencies": {
+    "chrome-webstore-upload-cli": "^1.2.0"
+  }
+}
