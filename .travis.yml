@@ -3,6 +3,7 @@ node_js:
   - '7'
 env:
   - EXTENSION_ID=ohfjpkccecpdfkpmfocndhepolhljfhg
+script: echo "No test"
 deploy:
   provider: script
   script: npm run release
