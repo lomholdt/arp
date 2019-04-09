@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '7'
+  - '10'
 env:
   - EXTENSION_ID=ohfjpkccecpdfkpmfocndhepolhljfhg
 script: echo "No test"
