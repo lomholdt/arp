@@ -21,7 +21,7 @@ ready(() => {
 	getId('minutes').onchange = update
 	getId('seconds').onchange = update
 
-	getId('timebtn').onclick = startTimer
+	getId('timerbtn').onclick = startTimer
 })
 
 
