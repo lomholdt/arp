@@ -267,12 +267,8 @@ function restoreOptions() {
 			show(getId('dateMode'))
 			//10 minutes later
 			var nowTime = new Date((new Date()).getTime() + 600000);
-			var theMonth = nowTime.getMonth() + 1;
-			if(theMonth < 10) {
-				theMonth = "0" + theMonth;
-			}
-			var dDate = nowTime.getFullYear() + "/" + theMonth + "/" + nowTime.getDate();
-			var dTime = nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
+			var dDate = nowTime.toLocaleDateString('en-ZA'); // this locale has required yyyy/MM/dd format
+			var dTime = nowTime.toLocaleTimeString('en-ZA'); // hh24:mm:ss, 2-digit mm and ss
 			getId('dateInp').value = dDate
 			getId('timeInp').value = dTime
 		}
