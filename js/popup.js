@@ -341,7 +341,7 @@ function recvData(data){
 			}
 			var dDate = nowTime.getFullYear() + "/" + theMonth + "/" + nowTime.getDate();
 			var dTime = nowTime.getHours() + ":" + theMin + ":" + theSec;
-			getid('dateInp').value = dDate
+			getId('dateInp').value = dDate
 			getId('timeInp').value = dTime
 			getId('timermode').value = '2'
 		}
